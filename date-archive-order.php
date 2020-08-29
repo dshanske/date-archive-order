@@ -15,10 +15,10 @@ function date_archive_order_date_sort( $query ) {
 		return;
 	}
 
-
-
-	if ( ( is_month() || is_day() ) && ! is_year() ) {
+	// If this is a date archive but if there is no year indicating it is an /onthisday from Post Kinds
+	if ( is_date() && empty( $query->get( 'year' ) ) ) {
 		$query->set( 'order', 'ASC' );
+		error_log( wp_json_encode( $query ) );
 	}
 
 	return $query;
