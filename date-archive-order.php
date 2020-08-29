@@ -15,7 +15,9 @@ function date_archive_order_date_sort( $query ) {
 		return;
 	}
 
-	if ( is_date() ) {
+
+
+	if ( is_date() && ! $query->get_query_var( 'year', false ) ) {
 		$query->set( 'order', 'ASC' );
 	}
 
